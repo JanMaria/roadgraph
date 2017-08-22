@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import geography.GeographicPoint;
-import geography.RoadSegment;
+
 
 /**Exemplification of concrete implementation of search algorithm. It uses bfs search algorithm.
  * 
@@ -20,14 +19,6 @@ public class BFSSearch extends SearchAlgorithm{
 	
 	public BFSSearch(MapGraph mg) {
 		super(mg);
-	}
-	
-	//bfs version of search algorithm without a consumer
-	@Override
-	public List<GeographicPoint> search(GeographicPoint start, GeographicPoint goal) {
-		Consumer<GeographicPoint> temp = (x) -> {};
-        return search(start, goal, temp);
-		
 	}
 	
 	//bfs version of search algorithm with a consumer

@@ -4,12 +4,10 @@ package roadgraph;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import geography.*;
 import util.GraphLoader;
 
 /**
@@ -149,5 +147,17 @@ public class MapGraph {
 			Consumer<GeographicPoint> nodeSearched) {
 		return algorithm.search(start, goal, nodeSearched);
 	}
+	
+	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal, 
+			Consumer<GeographicPoint> nodeSearched) {
+		changeAlgorithm(new Dijkstra(this));
+		return algorithm.search(start, goal, nodeSearched);
+	}
+	
+	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal) {
+		return dijkstra(start, goal, m -> {});
+	}
+	
+	
 	
 }
