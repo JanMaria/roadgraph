@@ -44,7 +44,6 @@ public class GeographicPoint extends Double implements Comparable<GeographicPoin
     
     private void setDistance(double dist) {
     	distanceFromStart = dist;
-    	//System.out.println(this + "\t" + dist);
     }
     
     /** this method should allow to use call to that method as an argument 
@@ -63,21 +62,10 @@ public class GeographicPoint extends Double implements Comparable<GeographicPoin
     {
     	return "Lat: " + getX() + ", Lon: " + getY();
     }
-    
-    @Override
-    public boolean equals(Object other) {
-    	if (other instanceof GeographicPoint && ((GeographicPoint)other).getX() == this.x && 
-    			((GeographicPoint)other).getY() == this.y)
-    		return true;
-    	return false;
-    }
 
 	@Override
 	public int compareTo(GeographicPoint other) {
-		System.out.println(this + "::" + getDistanceFromStart() + "\t" + 
-				other + "::" + other.getDistanceFromStart());
 		return (int) Math.round(this.distanceFromStart - other.getDistanceFromStart());
-		//return (int) Math.round(other.getDistanceFromStart() - this.distanceFromStart);
 	}
 	
 	

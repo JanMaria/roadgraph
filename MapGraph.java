@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -157,6 +160,13 @@ public class MapGraph {
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal) {
 		return dijkstra(start, goal, m -> {});
 	}
+	
+	/*public static void main (String ... args) {
+		GeographicPoint gp = new GeographicPoint(2,2);
+		GeographicPoint gp2 = gp;//(GeographicPoint) gp.clone();
+		gp2.setDistanceFromStart(2);
+		System.out.println(gp.getDistanceFromStart() + " " + gp2.getDistanceFromStart());
+	}*/
 	
 	
 	

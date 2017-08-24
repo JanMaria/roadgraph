@@ -101,8 +101,8 @@ public class RoadSegment {
 		for (GeographicPoint p : this.geometryPoints) {
 			toReturn += "; " + p;
 		}
-		toReturn += "; " + point2 + "]";
-		
+		//toReturn += "; " + point2 + "]";
+		toReturn += "; " + point2 + "] ::" + length + "\n";
 		return toReturn;
 	}
 
