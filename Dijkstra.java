@@ -1,6 +1,5 @@
 package roadgraph;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -16,10 +15,6 @@ public class Dijkstra extends SearchAlgorithm{
 
 	public Dijkstra(MapGraph mg) {
 		super(mg);
-		System.out.println("NEW GRAPH!!!!!!!!!!!!!!!");
-		for (GeographicPoint gp : graph.getGraph().keySet()) {
-			System.out.println (graph.getGraph().get(gp));
-		}
 	}
 
 	
@@ -27,68 +22,61 @@ public class Dijkstra extends SearchAlgorithm{
 	@Override
 	public List<GeographicPoint> search(GeographicPoint start, GeographicPoint goal,
 			Consumer<GeographicPoint> nodeSearched) {
+		
 		List <GeographicPoint> path = new LinkedList<GeographicPoint>();
 		
-		Queue<GeographicPoint> queue = new PriorityQueue<GeographicPoint>();
+		Map<GeographicPoint, Double> distances = new HashMap<GeographicPoint, Double>();
+		graph.getMap().keySet().forEach(gp -> distances.put(gp, Double.POSITIVE_INFINITY));
+		
+		Queue<GeographicPoint> queue = new PriorityQueue<GeographicPoint>(
+				(gp1, gp2) -> distances.get(gp1).compareTo(distances.get(gp2))
+				);
 		
 		GeographicPoint curr = null;
 		Map<GeographicPoint, GeographicPoint> parents = new HashMap<GeographicPoint, GeographicPoint>();
 		Set<GeographicPoint> visited = new HashSet<GeographicPoint>();
 		
-		queue.add(start.setDistanceFromStart(0));
-		parents.put(start, null);
+		/*distances.put(start, 0.0);
+		queue.add(start);*/
+		enqueue(queue, distances, start, 0.0);
 		
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
+			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);
 				if (curr.equals(goal)) break;
-				double dist = curr.getDistanceFromStart();
-				for (RoadSegment rs : graph.getGraph().get(curr)) {
+				double dist = distances.get(curr); 
+				for (RoadSegment rs : graph.getMap().get(curr)) {
 					GeographicPoint gp = rs.getOtherPoint(curr);
 					if (!visited.contains(gp)) {
-						if (gp.getDistanceFromStart() > dist+rs.getLength()) {
-							gp.setDistanceFromStart(dist+rs.getLength());
+						double newDist = dist+rs.getLength();
+						if (distances.get(gp) > (dist + rs.getLength())) {
+							enqueue(queue, distances, gp, newDist);
 							parents.put(gp,curr);
-							queue.add((GeographicPoint) gp.clone());
 						}
 					}
 				}
 			}
-				
-			
 		}
 		
-		
-		/*while(!queue.isEmpty()) {
-			curr = queue.poll();
-			if (curr.equals(goal)) break;
-			visited.add(curr);
-			double dist = curr.getDistanceFromStart();
-			for (RoadSegment rs : graph.getGraph().get(curr)) {
-				GeographicPoint gp = rs.getOtherPoint(curr);
-				if (!visited.contains(gp)) {
-					if (gp.getDistanceFromStart() > dist+rs.getLength()) {
-						gp.setDistanceFromStart(dist+rs.getLength());
-						parents.put(gp,curr);
-						queue.add(gp);
-					}
-				}
-			}
-				
-			
-		}*/
 		//this would mean that no path was found
 		if (!curr.equals(goal)){
 			return null;
 		}
-		while (curr != null){
+		while (curr != start){
 			path.add(0, curr);
 			curr = parents.get(curr);
-		}
+		} path.add(curr);
 		
 		return path;
 	}
+	
+	private void enqueue(Queue<GeographicPoint> queue, Map<GeographicPoint, Double> distances, GeographicPoint gp, double newDist) {
+		queue.add(gp);
+		distances.put(gp, newDist);
+	}
+	
 
 }

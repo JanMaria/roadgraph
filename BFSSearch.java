@@ -62,7 +62,7 @@ public class BFSSearch extends SearchAlgorithm{
 	 */
 	private Set<GeographicPoint> getNeighbors(GeographicPoint node) {
 		HashSet<GeographicPoint> neighbors = new HashSet<GeographicPoint>();
-		for (RoadSegment rs : graph.getGraph().get(node)) {
+		for (RoadSegment rs : graph.getMap().get(node)) {
 			neighbors.add(rs.getOtherPoint(node));
 		}
 		return neighbors;
