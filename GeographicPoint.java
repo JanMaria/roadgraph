@@ -4,9 +4,7 @@ import java.awt.geom.Point2D.Double;
 
 
 @SuppressWarnings("serial")
-public class GeographicPoint extends Double /*implements Comparable<GeographicPoint>*/{
-	
-	//private java.lang.Double distanceFromStart = java.lang.Double.POSITIVE_INFINITY;
+public class GeographicPoint extends Double{
 	
 	public GeographicPoint(double latitude, double longitude)
 	{
@@ -43,37 +41,16 @@ public class GeographicPoint extends Double /*implements Comparable<GeographicPo
     	return d;
     }
     
-    /*private void setDistance(double dist) {
-    	distanceFromStart = dist;
-    }*/
-    
     /** this method should allow to use call to that method as an argument 
      * to other function (see: Dijkstra.search(...))
      */
-    /*public GeographicPoint setDistanceFromStart(double dist) {
-    	setDistance(dist);
-    	return this;
-    }*/
-    
-    /*public double getDistanceFromStart() {
-    	return distanceFromStart;
-    }*/
     
     public String toString()
     {
     	return "Lat: " + getX() + ", Lon: " + getY();
     }
 
-	/*@Override
-	public int compareTo(GeographicPoint other) {
-		double thisDist = this.distanceFromStart;
-		double otherDist = other.getDistanceFromStart();
-		double diff = thisDist - otherDist;
-		long answer = Math.round(diff);
-		
-		//return (int) answer;
-		return (int) Math.round(1000*this.distanceFromStart - 1000*other.getDistanceFromStart());
-	}*/
+	
 	
 	
 }

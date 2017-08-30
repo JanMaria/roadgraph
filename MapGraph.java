@@ -160,23 +160,6 @@ public class MapGraph {
 		return dijkstra(start, goal, m -> {});
 	}
 	
-	/*public static void main (String ... args) {
-		Integer nin = 19;
-		Integer fiv = 5;
-		
-		GeographicPoint gp = new GeographicPoint(2,2);
-		GeographicPoint gpp1 = new GeographicPoint(3,2).setDistanceFromStart(nin);
-		GeographicPoint gpp2 = new GeographicPoint(4,2).setDistanceFromStart(fiv);
-		gp.setDistanceFromStart(20);
-		Map<GeographicPoint, GeographicPoint> parents = new HashMap<GeographicPoint, GeographicPoint>();
-		parents.put(gp, gpp1);
-		System.out.println(parents.get(gp));
-		if (gp.getDistanceFromStart() > gpp1.getDistanceFromStart()+gpp2.getDistanceFromStart())
-			parents.put(gp, gpp2);
-		System.out.println(parents.get(gp));
-		gp2.setDistanceFromStart(2);
-		System.out.println(gp.getDistanceFromStart() + " " + gp2.getDistanceFromStart());
-	}*/
 	
 	
 	
