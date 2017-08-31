@@ -41,7 +41,7 @@ public class Dijkstra extends SearchAlgorithm{
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
-			System.out.println(curr);
+			//System.out.println(curr);
 			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);

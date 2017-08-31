@@ -58,12 +58,12 @@ public class AStar extends SearchAlgorithm {
 		Set<GeographicPoint> visited = new HashSet<GeographicPoint>();
 		
 		enqueue(queue, distances, start, 0.0);
-		System.out.println(start + "\t" + start.distance(start));
+		//System.out.println(start + "\t" + start.distance(start));
 		
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
-			System.out.println(curr);
+			//System.out.println(curr);
 			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);
