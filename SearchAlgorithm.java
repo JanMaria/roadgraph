@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import geography.GeographicPoint;
+
 
 /**Abstract superclass serving as a State interface (see State Design Pattern). 
  * 

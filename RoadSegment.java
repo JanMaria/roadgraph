@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import geography.GeographicPoint;
+
 /** 
  * A segment of the road that includes the intersection end points
  * as well as all the minor points that make up the intermediate geometry.

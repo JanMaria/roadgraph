@@ -11,6 +11,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import geography.GeographicPoint;
+
 public class AStar extends SearchAlgorithm {
 	
 	private Map<GeographicPoint, Double> distances = new HashMap<GeographicPoint, Double>();
