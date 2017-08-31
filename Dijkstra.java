@@ -36,13 +36,12 @@ public class Dijkstra extends SearchAlgorithm{
 		Map<GeographicPoint, GeographicPoint> parents = new HashMap<GeographicPoint, GeographicPoint>();
 		Set<GeographicPoint> visited = new HashSet<GeographicPoint>();
 		
-		/*distances.put(start, 0.0);
-		queue.add(start);*/
 		enqueue(queue, distances, start, 0.0);
 		
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
+			System.out.println(curr);
 			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);
@@ -68,14 +67,15 @@ public class Dijkstra extends SearchAlgorithm{
 		while (curr != start){
 			path.add(0, curr);
 			curr = parents.get(curr);
-		} path.add(curr);
+		} path.add(0, curr);
 		
 		return path;
 	}
 	
 	private void enqueue(Queue<GeographicPoint> queue, Map<GeographicPoint, Double> distances, GeographicPoint gp, double newDist) {
-		queue.add(gp);
 		distances.put(gp, newDist);
+		queue.add(gp);
+		
 	}
 	
 

@@ -160,7 +160,22 @@ public class MapGraph {
 		return dijkstra(start, goal, m -> {});
 	}
 	
+	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal, 
+			Consumer<GeographicPoint> nodeSearched) {
+		changeAlgorithm(new AStar(this));
+		return algorithm.search(start, goal, nodeSearched);
+	}
 	
+	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal) {
+		return aStarSearch(start, goal, m -> {});
+	}
+	
+	public static void main (String... args) {
+		String a = "a";
+		String b = "b";
+		
+		System.out.println(a.compareTo(b));
+	}
 	
 	
 }
