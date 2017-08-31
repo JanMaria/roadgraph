@@ -62,10 +62,12 @@ public class AStar extends SearchAlgorithm {
 		enqueue(queue, distances, start, 0.0);
 		//System.out.println(start + "\t" + start.distance(start));
 		
+		int count = 0;
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
-			//System.out.println(curr);
+			count ++;
+			System.out.println("A* wisited node at: " + curr);
 			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);
@@ -93,7 +95,7 @@ public class AStar extends SearchAlgorithm {
 			path.add(0, curr);
 			curr = parents.get(curr);
 		} path.add(0, curr);
-		
+		System.out.println("\nCount for A*: " + count + "\n");
 		return path;
 	}
 	

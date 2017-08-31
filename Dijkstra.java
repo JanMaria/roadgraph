@@ -40,10 +40,13 @@ public class Dijkstra extends SearchAlgorithm{
 		
 		enqueue(queue, distances, start, 0.0);
 		
+		int count = 0;
+		
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
-			//System.out.println(curr);
+			count ++;
+			System.out.println("Dijkstra visited node at: " + curr);
 			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);
@@ -70,7 +73,7 @@ public class Dijkstra extends SearchAlgorithm{
 			path.add(0, curr);
 			curr = parents.get(curr);
 		} path.add(0, curr);
-		
+		System.out.println("\nCount for Dijkstra: " + count + "\n");
 		return path;
 	}
 	
