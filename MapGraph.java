@@ -133,9 +133,9 @@ public class MapGraph {
 	 * @return The list of intersections that form the shortest (unweighted)
 	 *   path from start to goal (including both start and goal) or null if no route was found. 
 	 */
-	public List<GeographicPoint> findRout(GeographicPoint start, GeographicPoint goal) {
+	/*public List<GeographicPoint> findRout(GeographicPoint start, GeographicPoint goal) {
 		return algorithm.search(start, goal);
-	}
+	}*/
 	
 	/** Find the path from start to goal. It uses different algorithms based on 
 	 * private state variable called algorithm.
@@ -146,10 +146,10 @@ public class MapGraph {
 	 * @return The list of intersections that form the shortest (unweighted)
 	 *   path from start to goal (including both start and goal) or null if no route was found. 
 	 */
-	public List<GeographicPoint> findRout(GeographicPoint start, GeographicPoint goal, 
+	/*public List<GeographicPoint> findRout(GeographicPoint start, GeographicPoint goal, 
 			Consumer<GeographicPoint> nodeSearched) {
 		return algorithm.search(start, goal, nodeSearched);
-	}
+	}*/
 	
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal, 
 			Consumer<GeographicPoint> nodeSearched) {
