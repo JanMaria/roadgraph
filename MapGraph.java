@@ -24,7 +24,7 @@ public class MapGraph {
 	//to make sure that one road will not be added twice. 
 	private HashMap <GeographicPoint, Set<RoadSegment>> nodes;
 	//Private variable that makes use of so called State Design Pattern
-	private SearchAlgorithm algorithm = new BFSSearch(this);
+	private SearchAlgorithm algorithm;// = new BFSSearch(this);
 	
 	
 	/** 
