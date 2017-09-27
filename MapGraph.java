@@ -164,11 +164,11 @@ public class MapGraph {
 	
 	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal, 
 			Consumer<GeographicPoint> nodeSearched) {
-		changeAlgorithm(new A(this));
+		changeAlgorithm(new AStar(this));
 		return algorithm.search(start, goal, nodeSearched);
 	}
 	
-	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal) {
+	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal) {
 		return dijkstra(start, goal, m -> {});
 	}
 	
