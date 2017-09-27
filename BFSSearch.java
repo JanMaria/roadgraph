@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import geography.*;
+
 
 
 /**Exemplification of concrete implementation of search algorithm. It uses bfs search algorithm.

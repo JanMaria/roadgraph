@@ -12,6 +12,8 @@ import java.util.function.Consumer;
 
 import util.GraphLoader;
 
+import geography.*;
+
 /**
  * @author UCSD MOOC development team and Jan Prokop
  * 
@@ -153,6 +155,16 @@ public class MapGraph {
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal, 
 			Consumer<GeographicPoint> nodeSearched) {
 		changeAlgorithm(new Dijkstra(this));
+		return algorithm.search(start, goal, nodeSearched);
+	}
+	
+	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal) {
+		return dijkstra(start, goal, m -> {});
+	}
+	
+	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal, 
+			Consumer<GeographicPoint> nodeSearched) {
+		changeAlgorithm(new A(this));
 		return algorithm.search(start, goal, nodeSearched);
 	}
 	
