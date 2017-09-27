@@ -171,6 +171,16 @@ public class MapGraph {
 	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal) {
 		return dijkstra(start, goal, m -> {});
 	}
+
+	public List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint end,
+			Consumer<GeographicPoint> nodeAccepter) {
+		changeAlgorithm(new BFSSearch(this));
+		return algorithm.search(start, end, nodeAccepter);
+	}
+	
+	public List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint goal) {
+		return algorithm.search(start, goal);
+	}
 	
 	/*public static void main (String ... args) {
 		Integer nin = 19;
