@@ -1,3 +1,7 @@
+This is (mostly) my code written as an assignment during UCSD MOOC on Coursera.org 
+It is not meant to work by itself - it's just a piece of the broader application 
+written by MOOC's team. The code illustrates the use of state pattern among other things.  
+
 Class: MapGraph
 Modifications made to MapGraph (what and why): 6 searching methods deleted and substituted with just 2 much shorter ones (because all 6 of them are actually the same 2 methods but using different algorithms). Private member variable of type SearchAlgorithm added (look below) – which search algorithm (bfs, Dijkstra, ASearch) will be performed depends on the concrete implementation of abstract SearchAlgorithm class. ). The whole design is based on the State Design Pattern and is actually utterly redundant if we have just one search algorithm but knowing that there will be more of them it makes future code much simpler and understandable (although probably useless with online grader).
 

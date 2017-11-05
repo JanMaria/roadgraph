@@ -11,7 +11,9 @@ import geography.*;
 
 
 
-/**Exemplification of concrete implementation of search algorithm. It uses bfs search algorithm.
+/**This class is an implementation of the Breadth First Search algorithm. 
+ * It finds the rout from one point on the map to another with the 
+ * minimal number of steps (nodes). It doesn't guarantee to find the shortest path.  
  * 
  * @author Jan Prokop
  *
@@ -23,7 +25,6 @@ public class BFSSearch extends SearchAlgorithm{
 		super(mg);
 	}
 	
-	//bfs version of search algorithm with a consumer
 	@Override
 	public List<GeographicPoint> search(GeographicPoint start, GeographicPoint goal,
 			Consumer<GeographicPoint> nodeSearched) {

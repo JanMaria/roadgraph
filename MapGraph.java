@@ -18,12 +18,12 @@ import geography.*;
  * @author UCSD MOOC development team and Jan Prokop
  * 
  * A class which represents a graph of geographic locations
- * Nodes in the graph are intersections between 
+ * Nodes in the graph are intersections between roads. 
  *
  */
 public class MapGraph {
-	//private variable mapping every node (vertex) to the Set of outgoing roads. The Set structure is used 
-	//to make sure that one road will not be added twice. 
+	/* private variable mapping every node (vertex) to the Set of outgoing roads. 
+	 * The Set structure is used to make sure that one road will not be added twice. */
 	private HashMap <GeographicPoint, Set<RoadSegment>> nodes;
 	//Private variable that makes use of so called State Design Pattern
 	private SearchAlgorithm algorithm = new BFSSearch(this);
@@ -127,7 +127,7 @@ public class MapGraph {
 	}
 	
 	/** Find the path from start to goal. It uses different algorithms based on 
-	 * private state variable called algorithm.
+	 * private state variable called algorithm (State Design Pattern).
 	 * 
 	 * @param start The starting location
 	 * @param goal The goal location
@@ -152,6 +152,11 @@ public class MapGraph {
 		return algorithm.search(start, goal, nodeSearched);
 	}
 	
+	/*
+	 * Methods below are redundant. I've kept them only to preserve compatibility with the original GUI 
+	 * designed by UCSD MOOC development team for purposes of the course. They are just particular 
+	 * versions of rout search algorithm.     
+	 */
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal, 
 			Consumer<GeographicPoint> nodeSearched) {
 		changeAlgorithm(new Dijkstra(this));
@@ -181,24 +186,6 @@ public class MapGraph {
 	public List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint goal) {
 		return algorithm.search(start, goal);
 	}
-	
-	/*public static void main (String ... args) {
-		Integer nin = 19;
-		Integer fiv = 5;
-		
-		GeographicPoint gp = new GeographicPoint(2,2);
-		GeographicPoint gpp1 = new GeographicPoint(3,2).setDistanceFromStart(nin);
-		GeographicPoint gpp2 = new GeographicPoint(4,2).setDistanceFromStart(fiv);
-		gp.setDistanceFromStart(20);
-		Map<GeographicPoint, GeographicPoint> parents = new HashMap<GeographicPoint, GeographicPoint>();
-		parents.put(gp, gpp1);
-		System.out.println(parents.get(gp));
-		if (gp.getDistanceFromStart() > gpp1.getDistanceFromStart()+gpp2.getDistanceFromStart())
-			parents.put(gp, gpp2);
-		System.out.println(parents.get(gp));
-		gp2.setDistanceFromStart(2);
-		System.out.println(gp.getDistanceFromStart() + " " + gp2.getDistanceFromStart());
-	}*/
 	
 	
 	

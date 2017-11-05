@@ -12,7 +12,13 @@ import java.util.function.Consumer;
 
 import geography.*;
 
-
+/**This is the implementation of the Dijkstra Search Algorithm
+ * that guarantee to find the shortest rout from one location
+ * on the map to another.  
+ * 
+ * @author Jan Prokop
+ *
+ */
 public class Dijkstra extends SearchAlgorithm{
 
 	public Dijkstra(MapGraph mg) {
@@ -38,10 +44,7 @@ public class Dijkstra extends SearchAlgorithm{
 		Map<GeographicPoint, GeographicPoint> parents = new HashMap<GeographicPoint, GeographicPoint>();
 		Set<GeographicPoint> visited = new HashSet<GeographicPoint>();
 		
-		/*distances.put(start, 0.0);
-		queue.add(start);*/
 		enqueue(queue, distances, start, 0.0);
-		
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
@@ -75,6 +78,7 @@ public class Dijkstra extends SearchAlgorithm{
 		return path;
 	}
 	
+	//private helper method
 	private void enqueue(Queue<GeographicPoint> queue, Map<GeographicPoint, Double> distances, GeographicPoint gp, double newDist) {
 		queue.add(gp);
 		distances.put(gp, newDist);

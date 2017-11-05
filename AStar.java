@@ -13,6 +13,15 @@ import java.util.function.Consumer;
 
 import geography.*;
 
+/** Implementation of the A* search algorithm. This is an algorithm to find the shortest 
+ * rout on a map from one point to another. The advantage of this algorithm over more 
+ * traditional ones is that it doesn't search in every direction from the starting point
+ * until it finds the destination point, but instead tries to keep the desirable direction. 
+ * It makes this algorithm a relatively fast one. 
+ * 
+ * @author Jan Prokop
+ *
+ */
 public class AStar extends SearchAlgorithm {
 	
 	private Map<GeographicPoint, Double> distances = new HashMap<GeographicPoint, Double>();
@@ -32,40 +41,27 @@ public class AStar extends SearchAlgorithm {
 		
 		List <GeographicPoint> path = new LinkedList<GeographicPoint>();
 		
-		//Map<GeographicPoint, Double> distances = new HashMap<GeographicPoint, Double>();
-		//graph.getMap().keySet().forEach(gp -> distances.put(gp, Double.POSITIVE_INFINITY));
-		
 		Comparator<GeographicPoint> byWeights = new Comparator<GeographicPoint>() {
 			@Override
 			public int compare(GeographicPoint gp1, GeographicPoint gp2) {
 				
-				Double weight1 = weight(gp1, goal);//distances.get(gp1) + gp1.distance(goal);
-				Double weight2 = weight(gp2, goal);//distances.get(gp2) + gp2.distance(goal);
-				/*System.out.println("new compare:" +
-						"\n" + gp1 + "\t" + distances.get(gp1) + "\t" + gp1.distance(goal) +
-						"\n" + gp2 + "\t" + distances.get(gp2) + "\t" + gp2.distance(goal) + 
-						"\nweight1: " + weight1 + "\nweight2: " + weight2 
-						);*/
+				Double weight1 = weight(gp1, goal);
+				Double weight2 = weight(gp2, goal);
+				
 				return weight1.compareTo(weight2);
 			}
 		};
 		
-		Queue<GeographicPoint> queue = new PriorityQueue<GeographicPoint>(
-				byWeights
-				//(gp1, gp2) -> distances.get(gp1).compareTo(distances.get(gp2))
-				);
+		Queue<GeographicPoint> queue = new PriorityQueue<GeographicPoint>(byWeights);
 		
 		GeographicPoint curr = null;
 		Map<GeographicPoint, GeographicPoint> parents = new HashMap<GeographicPoint, GeographicPoint>();
 		Set<GeographicPoint> visited = new HashSet<GeographicPoint>();
 		
 		enqueue(queue, distances, start, 0.0);
-		//System.out.println(start + "\t" + start.distance(start));
-		
 		
 		while(!queue.isEmpty()) {
 			curr = queue.poll();
-			//System.out.println(curr);
 			nodeSearched.accept(curr);
 			if (!visited.contains(curr)) {
 				visited.add(curr);
@@ -75,7 +71,6 @@ public class AStar extends SearchAlgorithm {
 					GeographicPoint gp = rs.getOtherPoint(curr);
 					if (!visited.contains(gp)) {
 						double newDist = dist+rs.getLength();
-						double weight = gp.distance(goal);
 						if (distances.get(gp) > (newDist)) {
 							enqueue(queue, distances, gp, newDist);
 							parents.put(gp,curr);
@@ -97,10 +92,13 @@ public class AStar extends SearchAlgorithm {
 		return path;
 	}
 	
-	private void enqueue(Queue<GeographicPoint> queue, Map<GeographicPoint, Double> distances, GeographicPoint gp, double newDist) {
+	//Private helper function used to enqueue a node into priority queue
+	private void enqueue(
+			Queue<GeographicPoint> queue, Map<GeographicPoint, Double> distances, 
+			GeographicPoint gp, double newDist
+			) {
 		distances.put(gp, newDist);
 		queue.add(gp);
-		
 	}
 	
 	
